@@ -1,2 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Archivo+Expanded:wght@600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
-@import url(../imports/StussyScript-Regular.ttf);
+
+@font-face {
+	font-family: "Stussy Script";
+	src: url("../imports/StussyScript-Regular.ttf") format("truetype");
+	font-display: swap;
+	font-style: normal;
+	font-weight: 400;
+}
