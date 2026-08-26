@@ -304,7 +304,7 @@ export default function App() {
             </p>
             <div className="mt-9 flex flex-wrap gap-3">
               <button
-                onClick={() => window.open("https://wa.me/5574999857549", "_blank") }
+                onClick={() => scrollTo("contato")}
                 className="group flex items-center gap-2 bg-primary px-6 py-3.5 font-mono text-sm uppercase tracking-widest text-primary-foreground transition-transform hover:-translate-y-0.5"
               >
                 Pedir orçamento
