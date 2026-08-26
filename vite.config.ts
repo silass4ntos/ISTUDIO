@@ -17,6 +17,7 @@ function figmaAssetResolver() {
 
 export default defineConfig({
   base: '/ISTUDIO/', // <-- Única linha adicionada (Nome do seu repositório no GitHub)
+  publicDir: 'public',
   plugins: [
     figmaAssetResolver(),
     // The React and Tailwind plugins are both required for Make, even if

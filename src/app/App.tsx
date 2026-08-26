@@ -25,8 +25,24 @@ import {
 import logoMark from "../imports/icon.png";
 import logoFull from "../imports/Logodark.jpg";
 
-const img = (id: string, w = 1200, h = 900) =>
-  `https://images.unsplash.com/${id}?w=${w}&h=${h}&fit=crop&auto=format`;
+const IMAGE_PATH = "./dist/assets/img";
+
+const IMAGES = {
+  heroPrinter: "Main.avif",
+  heroPieces: "MainLeft.avif",
+  heroNozzle: "MainRight.avif",
+  pieceMiniatures: "Miniatura.jpg",
+  pieceCurral: "Curral.jpg",
+  pieceGifts: "Brindes-personalizados.jpg",
+  pieceDiceTower: "Dice-tower.jpg",
+  piecePrototypes: "Prototipos-funcionais.jpg",
+  pieceProduction: "Pecas-em-producao.jpg",
+  projectCurral: "Curral.jpg",
+  projectMiniatures: "Miniatura.jpg",
+  projectMP3: "Prototipos-funcionais.jpg",
+} as const;
+
+const image = (fileName: string) => `${IMAGE_PATH}/${fileName}`;
 
 const NAV = [
   ["Processo", "processo"],
@@ -106,38 +122,38 @@ const PROCESS = [
 ];
 
 const PIECES = [
-  { id: "photo-1666643955906-a8bd5fc20629", label: "Miniaturas — PLA", tall: true },
-  { id: "photo-1728724569841-05305ee197df", label: "Maquete — Curral" },
-  { id: "photo-1707735325033-af8b8ad6a01f", label: "Brindes personalizados" },
-  { id: "photo-1772121034582-c7d18ae49e5c", label: "Board game — dice tower", tall: true },
-  { id: "photo-1644698245541-66a16547f247", label: "Protótipos funcionais" },
-  { id: "photo-1710828530560-2920125ad032", label: "Peças em produção" },
+  { image: IMAGES.pieceMiniatures, label: "Miniaturas — PLA", tall: true },
+  { image: IMAGES.pieceCurral, label: "Maquete — Curral" },
+  { image: IMAGES.pieceGifts, label: "Brindes personalizados" },
+  { image: IMAGES.pieceDiceTower, label: "Board game — dice tower", tall: true },
+  { image: IMAGES.piecePrototypes, label: "Protótipos funcionais" },
+  { image: IMAGES.pieceProduction, label: "Peças em produção" },
 ];
 
 const PROJECTS = [
   {
-    id: "photo-1728724569841-05305ee197df",
+    image: IMAGES.projectCurral,
     status: "Finalizado",
     title: "Maquete Curral caprinos e ouvinos",
     desc:
-      "Maquete arquitetônica em escala 1:200 para concorrência pública, com iluminação embutida e base modular removível.",
-    tags: ["Maquete", "Escala 1:200", "PLA + acrílico"],
+      "Maquete modular.",
+    tags: ["Maquete", "PLA + Madeira", "Escala 1:50"],
   },
   {
-    id: "photo-1666643955906-a8bd5fc20629",
+    image: IMAGES.projectMiniatures,
     status: "Modelagem",
     title: "Coleção Guardiões — Miniaturas RPG",
     desc:
       "Série de 12 miniaturas em PLA de alto detalhe para uma campanha autoral. Modelagem original e suportes otimizados.",
-    tags: ["Miniaturas", "PLA", "Autoral"],
+    tags: ["Miniaturas", "PLA"],
   },
   {
-    id: "photo-1644698245541-66a16547f247",
+    image: IMAGES.projectMP3,
     status: "Prototipagem",
-    title: "Encaixe modular NÁUTICO",
+    title: "MP3 protótipo",
     desc:
-      "Protótipo funcional de sistema de encaixe para equipamento náutico. Testes de tolerância e resistência em PETG.",
-    tags: ["Protótipo", "PETG", "Engenharia"],
+      "Protótipo de um MP3 totalmente personalizável.",
+    tags: ["Protótipo", "PLA", "Engenharia"],
   },
 ];
 
@@ -317,7 +333,7 @@ export default function App() {
             </div>
             <div className="aspect-[4/5] overflow-hidden border border-border bg-muted">
               <img
-                src={img("photo-1642969164999-979483e21601", 1000, 1250)}
+                src={image(IMAGES.heroPrinter)}
                 alt="Impressora 3D em operação com iluminação azul"
                 className="size-full object-cover"
               />
@@ -325,14 +341,14 @@ export default function App() {
             <div className="mt-3 grid grid-cols-2 gap-3">
               <div className="aspect-[4/3] overflow-hidden border border-border bg-muted">
                 <img
-                  src={img("photo-1710828530560-2920125ad032", 600, 450)}
+                  src={image(IMAGES.heroPieces)}
                   alt="Peças laranja sendo impressas"
                   className="size-full object-cover"
                 />
               </div>
               <div className="aspect-[4/3] overflow-hidden border border-border bg-muted">
                 <img
-                  src={img("photo-1638959492386-f9a68d55c374", 600, 450)}
+                  src={image(IMAGES.heroNozzle)}
                   alt="Detalhe do bico da impressora 3D"
                   className="size-full object-cover"
                 />
@@ -420,7 +436,7 @@ export default function App() {
           <div className="grid auto-rows-[220px] grid-cols-2 gap-4 lg:grid-cols-3">
             {PIECES.map((p, i) => (
               <motion.a
-                key={p.id + i}
+                key={p.image + i}
                 href="https://instagram.com/ofc_istudio"
                 target="_blank"
                 rel="noreferrer"
@@ -433,7 +449,7 @@ export default function App() {
                 }`}
               >
                 <img
-                  src={img(p.id, 800, p.tall ? 900 : 500)}
+                  src={image(p.image)}
                   alt={p.label}
                   className="size-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
@@ -467,7 +483,7 @@ export default function App() {
               >
                 <div className="relative aspect-[16/10] overflow-hidden bg-muted md:aspect-auto">
                   <img
-                    src={img(p.id, 700, 500)}
+                    src={image(p.image)}
                     alt={p.title}
                     className="size-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
