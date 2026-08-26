@@ -25,7 +25,7 @@ import {
 import logoMark from "../imports/icon.png";
 import logoFull from "../imports/Logodark.jpg";
 
-const IMAGE_PATH = "./dist/assets/img";
+const IMAGE_PATH = "./assets/img";
 
 const IMAGES = {
   heroPrinter: "Main.avif",
