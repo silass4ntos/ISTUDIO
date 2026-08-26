@@ -381,7 +381,7 @@ export default function App() {
                 key={s.n}
                 className="group bg-card p-7 transition-colors hover:bg-secondary"
               >
-                <div className="font-[var(--font-display)] text-5xl font-black text-primary/30 transition-colors group-hover:text-primary">
+                <div className="font-[var(--font-display)] text-5xl font-black text-primary transition-colors lg:text-primary/30 lg:group-hover:text-primary">
                   {s.n}
                 </div>
                 <h3 className="mt-5 font-[var(--font-display)] text-xl font-bold">
