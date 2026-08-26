@@ -23,7 +23,7 @@ import {
   CheckCircle2,
 } from "lucide-react";
 import logoMark from "../imports/icon.png";
-import logoFull from "../imports/Logo_dark.jpg";
+import logoFull from "../imports/Logodark.jpg";
 
 const img = (id: string, w = 1200, h = 900) =>
   `https://images.unsplash.com/${id}?w=${w}&h=${h}&fit=crop&auto=format`;
