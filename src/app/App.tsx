@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, type FormEvent } from "react";
 import { motion } from "motion/react";
 import {
   Boxes,
@@ -33,16 +33,15 @@ const IMAGES = {
   heroNozzle: "MainRight.avif",
   pieceMiniatures: "Miniatura.jpg",
   pieceCurral: "Curral.jpg",
-  pieceGifts: "Brindes-personalizados.jpg",
+  pieceGifts: "Personalizados.jpg",
   pieceDiceTower: "Dice-tower.jpg",
   piecePrototypes: "Prototipos-funcionais.jpg",
-  pieceProduction: "Pecas-em-producao.jpg",
-  projectCurral: "Curral.jpg",
-  projectMiniatures: "Miniatura.jpg",
+  pieceProduction: "Prototipos-funcionais.jpg",
   projectMP3: "Prototipos-funcionais.jpg",
 } as const;
 
 const image = (fileName: string) => `${IMAGE_PATH}/${fileName}`;
+const WHATSAPP_NUMBER = "5574999857549";
 
 const NAV = [
   ["Processo", "processo"],
@@ -124,29 +123,13 @@ const PROCESS = [
 const PIECES = [
   { image: IMAGES.pieceMiniatures, label: "Miniaturas — PLA", tall: true },
   { image: IMAGES.pieceCurral, label: "Maquete — Curral" },
-  { image: IMAGES.pieceGifts, label: "Brindes personalizados" },
+  { image: IMAGES.pieceGifts, label: "Letreiros personalizados" },
   { image: IMAGES.pieceDiceTower, label: "Board game — dice tower", tall: true },
   { image: IMAGES.piecePrototypes, label: "Protótipos funcionais" },
   { image: IMAGES.pieceProduction, label: "Peças em produção" },
 ];
 
 const PROJECTS = [
-  {
-    image: IMAGES.projectCurral,
-    status: "Finalizado",
-    title: "Maquete Curral caprinos e ouvinos",
-    desc:
-      "Maquete modular.",
-    tags: ["Maquete", "PLA + Madeira", "Escala 1:50"],
-  },
-  {
-    image: IMAGES.projectMiniatures,
-    status: "Modelagem",
-    title: "Coleção Guardiões — Miniaturas RPG",
-    desc:
-      "Série de 12 miniaturas em PLA de alto detalhe para uma campanha autoral. Modelagem original e suportes otimizados.",
-    tags: ["Miniaturas", "PLA"],
-  },
   {
     image: IMAGES.projectMP3,
     status: "Prototipagem",
@@ -199,10 +182,35 @@ function Kicker({ code, children }: { code: string; children: string }) {
 export default function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const active = useActiveSection();
+  const [quote, setQuote] = useState({
+    name: "",
+    phone: "",
+    email: "",
+    service: SERVICES[0].title,
+    details: "",
+  });
 
   const scrollTo = (id: string) => {
     setMenuOpen(false);
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  const sendQuoteByWhatsApp = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const message = [
+      "*Novo orçamento — ISTUDIO*",
+      "",
+      `*Nome:* ${quote.name}`,
+      `*Telefone:* ${quote.phone}`,
+      `*E-mail:* ${quote.email}`,
+      `*Serviço:* ${quote.service}`,
+      `*Detalhes:* ${quote.details}`,
+    ].join("\n");
+
+    window.open(
+      `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`,
+      "_blank"
+    );
   };
 
   return (
@@ -296,7 +304,7 @@ export default function App() {
             </p>
             <div className="mt-9 flex flex-wrap gap-3">
               <button
-                onClick={() => scrollTo("contato")}
+                onClick={() => window.open("https://wa.me/5574999857549", "_blank") }
                 className="group flex items-center gap-2 bg-primary px-6 py-3.5 font-mono text-sm uppercase tracking-widest text-primary-foreground transition-transform hover:-translate-y-0.5"
               >
                 Pedir orçamento
@@ -646,22 +654,45 @@ export default function App() {
 
           {/* Form */}
           <form
-            onSubmit={(e) => e.preventDefault()}
+            onSubmit={sendQuoteByWhatsApp}
             className="flex flex-col gap-5 border border-border bg-background p-7 lg:p-9"
           >
             <div className="font-mono text-xs uppercase tracking-widest text-primary">
               Solicitar orçamento
             </div>
             <div className="grid gap-5 sm:grid-cols-2">
-              <Field label="Nome" placeholder="Seu nome" />
-              <Field label="Telefone" placeholder="(00) 00000-0000" />
+              <Field
+                label="Nome"
+                placeholder="Seu nome"
+                value={quote.name}
+                onChange={(value) => setQuote((current) => ({ ...current, name: value }))}
+                required
+              />
+              <Field
+                label="Telefone"
+                placeholder="(00) 00000-0000"
+                value={quote.phone}
+                onChange={(value) => setQuote((current) => ({ ...current, phone: value }))}
+                required
+              />
             </div>
-            <Field label="E-mail" placeholder="voce@email.com" type="email" />
+            <Field
+              label="E-mail"
+              placeholder="voce@email.com"
+              type="email"
+              value={quote.email}
+              onChange={(value) => setQuote((current) => ({ ...current, email: value }))}
+              required
+            />
             <div>
               <label className="mb-2 block font-mono text-xs uppercase tracking-widest text-muted-foreground">
                 Tipo de serviço
               </label>
-              <select className="w-full border border-border bg-input-background px-4 py-3 text-foreground outline-none transition-colors focus:border-primary">
+              <select
+                value={quote.service}
+                onChange={(event) => setQuote((current) => ({ ...current, service: event.target.value }))}
+                className="w-full border border-border bg-input-background px-4 py-3 text-foreground outline-none transition-colors focus:border-primary"
+              >
                 {SERVICES.map((s) => (
                   <option key={s.title}>{s.title}</option>
                 ))}
@@ -675,11 +706,14 @@ export default function App() {
               <textarea
                 rows={4}
                 placeholder="Conte o que você precisa, quantidade, prazo..."
+                value={quote.details}
+                onChange={(event) => setQuote((current) => ({ ...current, details: event.target.value }))}
+                required
                 className="w-full resize-none border border-border bg-input-background px-4 py-3 text-foreground outline-none transition-colors placeholder:text-muted-foreground focus:border-primary"
               />
             </div>
             <button className="group mt-1 flex items-center justify-center gap-2 bg-primary px-6 py-4 font-mono text-sm uppercase tracking-widest text-primary-foreground transition-transform hover:-translate-y-0.5">
-              Enviar solicitação
+              Enviar pelo WhatsApp
               <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
             </button>
             <p className="flex items-center gap-2 font-mono text-xs text-muted-foreground">
@@ -708,10 +742,16 @@ function Field({
   label,
   placeholder,
   type = "text",
+  value,
+  onChange,
+  required = false,
 }: {
   label: string;
   placeholder: string;
   type?: string;
+  value: string;
+  onChange: (value: string) => void;
+  required?: boolean;
 }) {
   return (
     <div>
@@ -721,6 +761,9 @@ function Field({
       <input
         type={type}
         placeholder={placeholder}
+        value={value}
+        onChange={(event) => onChange(event.target.value)}
+        required={required}
         className="w-full border border-border bg-input-background px-4 py-3 text-foreground outline-none transition-colors placeholder:text-muted-foreground focus:border-primary"
       />
     </div>
