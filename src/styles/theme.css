@@ -8,8 +8,8 @@
   --card-foreground: #f2f0ec;
   --popover: #161618;
   --popover-foreground: #f2f0ec;
-  --primary: #ff5a1f;
-  --primary-foreground: #0d0d0f;
+  --primary: #E8CA25;
+  --primary-foreground: #161618;
   --secondary: #1f1f22;
   --secondary-foreground: #f2f0ec;
   --muted: #1a1a1d;
@@ -26,6 +26,7 @@
   --font-weight-normal: 400;
   --ring: #ff5a1f;
 
+  --font-logo: "Stussy Script";
   --font-display: "Archivo Expanded", "Archivo", sans-serif;
   --font-body: "Archivo", sans-serif;
   --font-mono: "JetBrains Mono", monospace;
@@ -44,7 +45,11 @@
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
 }
-
+.font-logo {
+  font-family: var(--font-logo);
+  letter-spacing: 0.1em;
+  text-transform: lowercase;
+}
 .dark {
   --background: oklch(0.145 0 0);
   --foreground: oklch(0.985 0 0);
@@ -130,16 +135,6 @@
 
   body {
     @apply bg-background text-foreground;
-    cursor: url("../imports/robot-cursor.svg") 7 2, auto;
-  }
-
-  /* Robot-hand cursor across interactive elements */
-  a,
-  button,
-  select,
-  [role="button"],
-  summary {
-    cursor: url("../imports/robot-cursor.svg") 7 2, pointer;
   }
 
   /**

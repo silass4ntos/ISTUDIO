@@ -22,7 +22,7 @@ import {
   Clock,
   CheckCircle2,
 } from "lucide-react";
-import logoMark from "../imports/Group_4.png";
+import logoMark from "../imports/icon.png";
 import logoFull from "../imports/Logo_dark.jpg";
 
 const img = (id: string, w = 1200, h = 900) =>
@@ -143,28 +143,10 @@ const PROJECTS = [
 
 const REVIEWS = [
   {
-    name: "Marina Alves",
-    role: "Arquiteta — Estúdio MA",
+    name: "Teste",
+    role: "Teste",
     text:
-      "A maquete ficou impecável. Nível de detalhe absurdo e entregaram antes do prazo. Virou meu fornecedor fixo.",
-  },
-  {
-    name: "Rafael Nunes",
-    role: "Game designer",
-    text:
-      "As miniaturas do meu board game saíram melhores do que eu imaginava. Acabamento limpo, zero falha de camada.",
-  },
-  {
-    name: "Camila Torres",
-    role: "Loja Camila Presentes",
-    text:
-      "Chaveiros e letreiros personalizados com a minha marca. Comunicação ótima e preço justo. Recomendo demais.",
-  },
-  {
-    name: "Diego Ferraz",
-    role: "Eng. de produto",
-    text:
-      "Prototiparam 3 versões de uma peça funcional em uma semana. Precisão dimensional exatamente como no CAD.",
+      "Teste",
   },
 ];
 
@@ -221,8 +203,8 @@ export default function App() {
               alt="ISTUDIO"
               className="size-9 rounded-full object-cover"
             />
-            <span>
-              ISTUDIO<span className="text-primary">.</span>
+            <span className="font-logo">
+              ISTUDIO
             </span>
           </button>
 
@@ -242,10 +224,10 @@ export default function App() {
 
           <div className="flex items-center gap-3">
             <button
-              onClick={() => scrollTo("contato")}
+              onClick={() => window.open("https://wa.me/5574999857549", "_blank")}
               className="hidden items-center gap-2 bg-primary px-4 py-2 font-mono text-xs uppercase tracking-widest text-primary-foreground transition-transform hover:-translate-y-0.5 sm:flex"
             >
-              Orçamento <ArrowUpRight className="size-4" />
+              Orçamento <ArrowUpRight className="size-4 " />
             </button>
             <button
               className="lg:hidden"
@@ -292,7 +274,7 @@ export default function App() {
               camada por camada.
             </h1>
             <p className="mt-7 max-w-xl text-lg leading-relaxed text-muted-foreground">
-              A ISTUDIO é um estúdio de impressão 3D. Modelagem, protótipos,
+              O <span className="font-logo">ISTUDIO</span> é um estúdio de impressão 3D. Modelagem, protótipos,
               maquetes, miniaturas e personalizados — feitos com precisão e
               acabamento de verdade.
             </p>
@@ -311,10 +293,10 @@ export default function App() {
                 Ver peças
               </button>
             </div>
-            <div className="mt-12 grid max-w-lg grid-cols-3 gap-6 border-t border-border pt-7">
+            <div className="mt-12 grid max-w-lg grid-cols-3 gap-6 pt-7">
               {[
                 ["+480", "peças entregues"],
-                ["0,1mm", "resolução de camada"],
+                ["+20", "clientes atendidos"],
                 ["48h", "prazo médio"],
               ].map(([v, l]) => (
                 <div key={l}>
@@ -331,7 +313,7 @@ export default function App() {
 
           <div className="relative">
             <div className="absolute -left-4 -top-4 z-10 bg-primary px-3 py-1.5 font-mono text-[11px] uppercase tracking-widest text-primary-foreground">
-              LIVE · 214/300 camadas
+              * NOVIDADES EM BREVE! *
             </div>
             <div className="aspect-[4/5] overflow-hidden border border-border bg-muted">
               <img
@@ -432,7 +414,7 @@ export default function App() {
           <div className="mb-14 max-w-2xl">
             <Kicker code="[03]">Peças produzidas</Kicker>
             <h2 className="mt-5 font-[var(--font-display)] text-4xl font-extrabold tracking-tight lg:text-5xl">
-              Feito na ISTUDIO.
+              Feitos no <span className="font-logo">ISTUDIO</span>
             </h2>
           </div>
           <div className="grid auto-rows-[220px] grid-cols-2 gap-4 lg:grid-cols-3">
@@ -695,9 +677,9 @@ export default function App() {
       {/* ===== FOOTER ===== */}
       <footer className="border-t border-border">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-5 py-8 font-mono text-xs uppercase tracking-widest text-muted-foreground sm:flex-row lg:px-10">
-          <div className="flex items-center gap-2 text-foreground">
+          <div className="flex items-center gap-2 text-foreground font-logo">
             <img src={logoMark} alt="ISTUDIO" className="size-6 rounded-full object-cover" />
-            ISTUDIO<span className="text-primary">.</span>
+            ISTUDIO
           </div>
           <span>© {new Date().getFullYear()} ISTUDIO — Impressão 3D · Uauá, BA</span>
         </div>
