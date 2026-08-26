@@ -107,7 +107,7 @@ const PROCESS = [
 
 const PIECES = [
   { id: "photo-1666643955906-a8bd5fc20629", label: "Miniaturas — PLA", tall: true },
-  { id: "photo-1728724569841-05305ee197df", label: "Maquete — castelo" },
+  { id: "photo-1728724569841-05305ee197df", label: "Maquete — Curral" },
   { id: "photo-1707735325033-af8b8ad6a01f", label: "Brindes personalizados" },
   { id: "photo-1772121034582-c7d18ae49e5c", label: "Board game — dice tower", tall: true },
   { id: "photo-1644698245541-66a16547f247", label: "Protótipos funcionais" },
@@ -117,8 +117,8 @@ const PIECES = [
 const PROJECTS = [
   {
     id: "photo-1728724569841-05305ee197df",
-    status: "Em produção",
-    title: "Maquete Centro Cultural Ipê",
+    status: "Finalizado",
+    title: "Maquete Curral caprinos e ouvinos",
     desc:
       "Maquete arquitetônica em escala 1:200 para concorrência pública, com iluminação embutida e base modular removível.",
     tags: ["Maquete", "Escala 1:200", "PLA + acrílico"],
