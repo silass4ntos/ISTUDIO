@@ -28,16 +28,16 @@ import logoFull from "../imports/Logodark.jpg";
 const IMAGE_PATH = "./assets/img";
 
 const IMAGES = {
-  heroPrinter: "Main.avif",
-  heroPieces: "MainLeft.avif",
-  heroNozzle: "MainRight.avif",
-  pieceMiniatures: "Miniatura.jpg",
-  pieceCurral: "Curral.jpg",
-  pieceGifts: "Personalizados.jpg",
-  pieceDiceTower: "Dice-tower.jpg",
-  piecePrototypes: "Prototipos-funcionais.jpg",
-  pieceProduction: "Prototipos-funcionais.jpg",
-  projectMP3: "Prototipos-funcionais.jpg",
+  heroPrinter: "Main.webp",
+  heroPieces: "MainLeft.webp",
+  heroNozzle: "MainRight.webp",
+  pieceMiniatures: "Miniatura.webp",
+  pieceCurral: "Curral.webp",
+  pieceGifts: "Personalizados.webp",
+  pieceDiceTower: "Dice-tower.webp",
+  piecePrototypes: "Prototipos-funcionais.webp",
+  pieceProduction: "Prototipos-funcionais.webp",
+  projectMP3: "Prototipos-funcionais.webp",
 } as const;
 
 const image = (fileName: string) => `${IMAGE_PATH}/${fileName}`;
@@ -123,9 +123,9 @@ const PROCESS = [
 const PIECES = [
   { image: IMAGES.pieceMiniatures, label: "Miniaturas — PLA", tall: true },
   { image: IMAGES.pieceCurral, label: "Maquete — Curral" },
-  { image: IMAGES.pieceGifts, label: "Letreiros personalizados" },
   { image: IMAGES.pieceDiceTower, label: "Board game — dice tower", tall: true },
-  { image: IMAGES.piecePrototypes, label: "Protótipos funcionais" },
+  { image: IMAGES.piecePrototypes, label: "Protótipos funcionais", tall: true },
+  { image: IMAGES.pieceGifts, label: "Letreiros personalizados" },
   { image: IMAGES.pieceProduction, label: "Peças em produção" },
 ];
 
